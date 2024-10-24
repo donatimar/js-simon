@@ -1,4 +1,7 @@
 const generateButton = document.getElementById("generateButton");
+const timerDisplay = document.getElementById("timer");
+let timer;
+let timeLeft = 5;
 
 generateButton.addEventListener("click", function () {
   const randomNumbers = [];
@@ -21,3 +24,12 @@ generateButton.addEventListener("click", function () {
     numberList.appendChild(listItem);
   });
 });
+
+function startTimer() {
+  timer = setInterval(function () {
+    timeLeft--;
+    timerDisplay.textContent = `Tempo rimanente: ${timeLeft} secondi`;
+  }, 1000);
+}
+
+startTimer();
