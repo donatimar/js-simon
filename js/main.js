@@ -5,7 +5,7 @@ const inputContainer = document.getElementById("inputContainer");
 const inputsDiv = document.getElementById("inputs");
 const submitButton = document.getElementById("submitButton");
 let timer;
-let timeLeft = 5;
+let timeLeft = 30;
 let randomNumbers = [];
 
 generateButton.addEventListener("click", function () {
@@ -30,7 +30,7 @@ generateButton.addEventListener("click", function () {
   });
 
   // Avvia il timer quando i numeri vengono generati
-  timeLeft = 5;
+  timeLeft = 30;
   timerDisplay.textContent = `Tempo rimanente: ${timeLeft} secondi`;
   startTimer();
 });
