@@ -59,7 +59,7 @@ function showInputFields() {
   for (let i = 0; i < 5; i++) {
     const input = document.createElement("input");
     input.type = "number";
-    input.className = "form-control mb-2";
+    input.className = "form-control form-control-sm mb-2 mx-1";
     input.placeholder = "Numero " + (i + 1);
     inputsDiv.appendChild(input);
   }
