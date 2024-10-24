@@ -1,10 +1,16 @@
 const generateButton = document.getElementById("generateButton");
 const timerDisplay = document.getElementById("timer");
+const numberList = document.getElementById("randomNumbers");
+const inputContainer = document.getElementById("inputContainer");
+const inputsDiv = document.getElementById("inputs");
+const submitButton = document.getElementById("submitButton");
 let timer;
 let timeLeft = 5;
+let randomNumbers = [];
 
 generateButton.addEventListener("click", function () {
-  const randomNumbers = [];
+  // Genera numeri casuali
+  randomNumbers = [];
 
   while (randomNumbers.length < 5) {
     const randomNumber = Math.floor(Math.random() * 99) + 1;
@@ -14,7 +20,6 @@ generateButton.addEventListener("click", function () {
     }
   }
 
-  const numberList = document.getElementById("randomNumbers");
   numberList.innerHTML = "";
 
   randomNumbers.forEach((num) => {
@@ -23,13 +28,52 @@ generateButton.addEventListener("click", function () {
     listItem.textContent = num;
     numberList.appendChild(listItem);
   });
+
+  // Avvia il timer quando i numeri vengono generati
+  timeLeft = 5;
+  timerDisplay.textContent = `Tempo rimanente: ${timeLeft} secondi`;
+  startTimer();
 });
 
+// Funzione per avviare il timer
 function startTimer() {
   timer = setInterval(function () {
     timeLeft--;
     timerDisplay.textContent = `Tempo rimanente: ${timeLeft} secondi`;
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      generateButton.disabled = true;
+      timerDisplay.textContent = "Tempo scaduto!";
+      numberList.style.display = "none";
+      showInputFields();
+    }
   }, 1000);
 }
 
-startTimer();
+// Funzione per mostrare gli input
+function showInputFields() {
+  inputContainer.style.display = "block";
+
+  // Crea gli input per i numeri
+  for (let i = 0; i < 5; i++) {
+    const input = document.createElement("input");
+    input.type = "number";
+    input.className = "form-control mb-2";
+    input.placeholder = "Numero " + (i + 1);
+    inputsDiv.appendChild(input);
+  }
+}
+
+// Funzione per gestire l'invio degli input
+submitButton.addEventListener("click", function () {
+  const userNumbers = Array.from(inputsDiv.querySelectorAll("input"))
+    .map((input) => Number(input.value))
+    .filter((num) => !isNaN(num));
+
+  // Confronta i numeri indovinati
+  const correctGuesses = userNumbers.filter((num) =>
+    randomNumbers.includes(num)
+  );
+  alert(`Hai indovinato ${correctGuesses.length} numeri`);
+});

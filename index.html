@@ -32,12 +32,29 @@
 
   <body>
     <div class="container mt-5">
+      <!-- Titolo -->
       <h1 class="text-center">Numeri Casuali</h1>
       <p id="timer" class="text-center mt-3">Tempo rimanente: 30 secondi</p>
       <ul id="randomNumbers" class="list-group mt-3"></ul>
-      <button id="generateButton" class="btn btn-primary mt-3">
-        Genera Numeri Casuali
-      </button>
+
+      <!-- Pulsante genera numeri -->
+      <div class="text-center">
+        <!-- Aggiunto div per centrare -->
+        <button id="generateButton" class="btn btn-primary mt-3">
+          Genera Numeri Casuali
+        </button>
+      </div>
+    </div>
+
+    <div id="inputContainer" class="mt-4" style="display: none">
+      <h3 class="text-center">Inserisci i numeri che hai visto:</h3>
+      <div id="inputs" class="text-center"></div>
+
+      <div class="text-center">
+        <!-- Aggiunto div per centrare -->
+        <!-- Pulsante invia -->
+        <button id="submitButton" class="btn btn-success mt-3">Invia</button>
+      </div>
     </div>
 
     <!-- SCRIPT JS -->
